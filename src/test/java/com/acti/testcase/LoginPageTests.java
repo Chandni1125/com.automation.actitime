@@ -1,13 +1,7 @@
 package com.acti.testcase;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import com.acti.driver.DriverScript;
-import com.acti.pages.EnterPage;
-import com.acti.pages.LoginPage;
 
 
 /*
@@ -18,28 +12,17 @@ import com.acti.pages.LoginPage;
 * Approved By : cpatel371@gmail.com
 */
 
-public class LoginPageTests extends DriverScript{
+public class LoginPageTests extends BaseTest{
 
-	LoginPage loginPage;
-	EnterPage enterPage;
-	
-	@BeforeMethod
-	public void setUp() throws InterruptedException
+	@Test(priority = 0)
+	public void testLoginPageTitle()
 	{
-		DriverScript.initApplication();
-		loginPage = new LoginPage();
-		enterPage = new EnterPage();
+		String title = loginPage.getLoginPageTitle();
+		System.out.println(title);
+		Assert.assertTrue(title.contains("Login"));
 	}
 	
-	@AfterMethod
-	public void tearDown()
-	{
-		DriverScript.quitDriver();
-	}
-	
-	
-	
-	@Test
+	@Test(priority = 1)
 	public void testLoginFuncation() throws InterruptedException
 	{
 		loginPage.enterUsername("admin");
@@ -50,6 +33,21 @@ public class LoginPageTests extends DriverScript{
 		Assert.assertTrue(actual.contains("John"));
 		System.out.println(actual);
 		enterPage.clickLogout();
-
+	}
+	
+	@Test(priority = 2)
+	public void testActiImgDisplayed()
+	{
+		boolean flag = loginPage.isActiImageDisplayed();
+		System.out.println(flag);
+		Assert.assertTrue(flag);
+	}
+	
+	@Test(priority = 3)
+	public void testForgotPasswordLinkDisplayed()
+	{
+		boolean flag = loginPage.isForgotPasswordLinkDisplayed();
+		System.out.println(flag);
+		Assert.assertTrue(flag);
 	}
 }
