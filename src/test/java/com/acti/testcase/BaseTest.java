@@ -7,12 +7,14 @@ import org.testng.annotations.DataProvider;
 import com.acti.driver.DriverScript;
 import com.acti.pages.EnterPage;
 import com.acti.pages.LoginPage;
+import com.acti.pages.TaskPage;
 import com.acti.utils.ExcelLib;
 
 public class BaseTest extends DriverScript {
 
 	LoginPage loginPage;
 	EnterPage enterPage;
+	TaskPage taskPage;
 	
 	@BeforeMethod
 	public void setUp() throws InterruptedException
@@ -20,6 +22,7 @@ public class BaseTest extends DriverScript {
 		DriverScript.initApplication();
 		loginPage = new LoginPage();
 		enterPage = new EnterPage();
+		taskPage = new TaskPage();
 	}
 	
 	@AfterMethod
@@ -31,7 +34,7 @@ public class BaseTest extends DriverScript {
 	@DataProvider(name="actiData")
 	public Object[][] testData()
 	{
-		ExcelLib excel = new ExcelLib("./src/main/resources/testdata/actidata.xlsx");
+		ExcelLib excel = new ExcelLib("./src/test/resources/testdata/actidata.xlsx");
 		int rows = excel.getRowCount("usercredentials");
 		Object data[][]=new Object[rows][2];
 		
