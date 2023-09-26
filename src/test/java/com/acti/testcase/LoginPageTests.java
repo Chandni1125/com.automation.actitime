@@ -22,11 +22,11 @@ public class LoginPageTests extends BaseTest{
 		Assert.assertTrue(title.contains("Login"));
 	}
 	
-	@Test(priority = 1)
-	public void testLoginFuncation() throws InterruptedException
+	@Test(priority = 1,dataProvider = "actiData")
+	public void testLoginFuncation(String username, String password) throws InterruptedException
 	{
-		loginPage.enterUsername("admin");
-		loginPage.enterPassword("manager");
+		loginPage.enterUsername(username);
+		loginPage.enterPassword(password);
 		loginPage.clickLoginbutton();
 		
 		String actual = enterPage.getUserLoggedInText();
