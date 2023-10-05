@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.acti.driver.DriverScript;
+import com.acti.utils.HelperLib;
 
 public class TaskPage extends DriverScript {
 
@@ -16,7 +17,14 @@ public class TaskPage extends DriverScript {
 		@FindBy(xpath = "//textarea[@placeholder='Enter Customer Description']")WebElement customerDescriptionTextArea;
 		@FindBy(xpath = "//div[text()='Create Customer']")WebElement crateCustomerButton;
 		@FindBy(xpath = "//span[@class='innerHtml']")WebElement SuccessMsg;
-
+		@FindBy(xpath = "(//input[@placeholder='Start typing name ...'])[1]")WebElement textboxStartTyping;
+		@FindBy(xpath = "//div[@class='filteredContainer']//div[@class='title']")WebElement searchedCustomer;
+        @FindBy(xpath = "//div[@class='titleEditButtonContainer']//div[@class='editButton']")WebElement buttonEdit;
+		@FindBy(xpath = "//div[@class='editCustomerPanelHeader']//div[@class='action'][normalize-space()='ACTIONS']")WebElement buttonAction;
+		@FindBy(xpath = "//div[@class='taskManagement_customerPanel']//div[@class='title'][normalize-space()='Delete']")WebElement buttonDelete;
+		@FindBy(xpath = "//span[@class='submitTitle buttonTitle']")WebElement buttonDeletePermanently;
+		
+		
 	//****************************** Page Initialization******************************//
 			
 		public TaskPage()
@@ -26,6 +34,32 @@ public class TaskPage extends DriverScript {
 			
 	//****************************** Page Action Methods ******************************//
 
+		public void clickDeletePermanently()
+		{
+			buttonDeletePermanently.click();
+			HelperLib.sleep();
+		}
+		public void clickDeleteButton()
+		{
+			buttonDelete.click();
+		}
+		public void clickActionButton()
+		{
+			buttonAction.click();
+		}
+		public void clickEditButton()
+		{
+			buttonEdit.click();
+			HelperLib.sleep();
+		}
+		public void clickSearchedCustomer()
+		{
+			searchedCustomer.click();
+		}
+		public void enterCustomerType(String customername)
+		{
+			textboxStartTyping.sendKeys(customername);
+		}
 		
 		public String getSuccessMessageText()
 		{
