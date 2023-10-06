@@ -22,7 +22,7 @@ public class LoginPage extends DriverScript{
 	@FindBy(name = "pwd") WebElement passwordTB;
 	@FindBy(xpath = "//div[text()='Login ']") WebElement loginBtn;
 	@FindBy(className = "atLogoImg") WebElement actiImg;
-	@FindBy(linkText = "Forgot your password?") WebElement forgotpasswordLink;
+	@FindBy(linkText = "Forgot your password?1111") WebElement forgotpasswordLink;
 	
 //****************************** Page Elements Initialization******************************//
 
